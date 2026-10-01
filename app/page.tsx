@@ -2,88 +2,70 @@
 import { useState } from "react";
 
 export default function Page() {
+  const [half, setHalf] = useState(false);
+  const [tab, setTab] = useState("explorar");
+
   return (
-    <div style={{background:"#0a0614", minHeight:"100vh", color:"white", fontFamily:"sans-serif", maxWidth:"430px", margin:"0 auto", paddingBottom:"90px"}}>
+    <div style={{background:"#0a0612", minHeight:"100vh", color:"white", maxWidth:"430px", margin:"0 auto", paddingBottom:"90px", fontFamily:"sans-serif", position:"relative"}}>
+      
       {/* HEADER */}
-      <div style={{background:"linear-gradient(90deg,#ff2a9a,#8a2bff)", padding:"16px", textAlign:"center", position:"relative"}}>
-        <div style={{position:"absolute", left:"16px", top:"18px", fontSize:"24px"}}>💜</div>
-        <h1 style={{margin:0, fontSize:"26px", fontWeight:"900", letterSpacing:"1px", lineHeight:"1"}}>AMOR<br/>CONECTADO</h1>
+      <div style={{display:"flex", justifyContent:"space-between", padding:"14px 14px", alignItems:"center", background:"linear-gradient(90deg,#1a0f2e,#2a1040)"}}>
+        <div style={{display:"flex", gap:"8px", alignItems:"center"}}><div style={{border:"2px solid #ff2ad4", width:"36px", height:"36px", borderRadius:"10px", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 0 10px #ff2ad4"}}>💜</div><div style={{fontWeight:"900", lineHeight:"0.9"}}>AMOR<br/><span style={{color:"#ff6bff"}}>CONECTADO</span></div></div>
+        <div style={{display:"flex", gap:"8px"}}><span style={{border:"1px solid #8a2bff", borderRadius:"50%", width:"32px", height:"32px", display:"flex", alignItems:"center", justifyContent:"center"}}>🔔</span><span style={{border:"1px solid #8a2bff", borderRadius:"50%", width:"32px", height:"32px", display:"flex", alignItems:"center", justifyContent:"center"}}>👤</span></div>
       </div>
 
-      {/* CASAIS PROXIMOS */}
-      <div style={{padding:"16px"}}>
-        <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"10px"}}>
-          <h2 style={{margin:0, fontSize:"18px"}}>📍 Casais Próximos</h2>
-          <span style={{fontSize:"12px", opacity:0.6}}>GPS • 1.2km</span>
-        </div>
-        <div style={{background:"#1a1033", borderRadius:"16px", padding:"12px", border:"1px solid #3a2066", height:"110px", position:"relative", backgroundImage:"linear-gradient(rgba(138,43,255,0.2), rgba(138,43,255,0.2))", display:"flex", alignItems:"flex-end"}}>
-          <span style={{fontSize:"12px", opacity:0.7}}>1.2km ao redor</span>
-          <div style={{position:"absolute", left:"50%", top:"50%", transform:"translate(-50%,-50%)", fontSize:"30px"}}>📍</div>
-        </div>
+      {/* DESCUBRIR */}
+      <div style={{margin:"10px 12px", background:"#1a1033", borderRadius:"14px", padding:"12px", border:"1px solid #3a2066"}}>
+        <div style={{color:"#ff6bff", fontWeight:"900"}}>Descubrir Parejas Cercanas</div>
+        <div style={{fontSize:"11px", opacity:0.7}}>📍 12 parejas activas • GPS para encontros casuais • Bloquear / Denunciar</div>
       </div>
 
-      {/* CARDS */}
-      <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"12px", padding:"0 16px"}}>
-        {[
-          {nome:"Lucas & Ana", status:"Namorando • 1.2km • Online"},
-          {nome:"Marcos & Julia", status:"Noivos • 0.9km • Online"}
-        ].map((c,i)=>(
-          <div key={i} style={{background:"#1e1340", borderRadius:"16px", padding:"12px", textAlign:"center", border:"1px solid #4a2d8a"}}>
-            <div style={{display:"flex", justifyContent:"center", gap:"8px", marginBottom:"8px"}}>
-              <div style={{width:"44px", height:"44px", borderRadius:"50%", background:"#555"}}></div>
-              <div style={{width:"44px", height:"44px", borderRadius:"50%", background:"#777"}}></div>
-            </div>
-            <div style={{fontWeight:"bold", fontSize:"14px"}}>{c.nome}</div>
-            <div style={{fontSize:"10px", opacity:0.6, margin:"4px 0 8px"}}>{c.status}</div>
-            <button style={{background:"transparent", border:"1px solid #ff2a9a", color:"#ff8ac6", borderRadius:"20px", padding:"6px 14px", fontSize:"12px", width:"100%"}}>💬 Conversar</button>
-          </div>
-        ))}
+      {/* MAPA */}
+      <div style={{margin:"10px 12px", background:"#120b25", borderRadius:"18px", padding:"10px", border:"1px solid #ff2ad4"}}>
+        <div style={{fontWeight:"900", fontSize:"12px"}}>MAPA — CERCA DE TI • GPS 500m</div>
+        <div style={{height:"90px", background:"radial-gradient(#1a1040,#0a0612)", borderRadius:"10px", marginTop:"8px", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"11px"}}>🗺️ Alex & Mia 1.2km • Jae & Luna 3.5km • Tu 1.1km</div>
       </div>
 
-      {/* JOGOS */}
-      <div style={{padding:"20px 16px 0"}}>
-        <h2 style={{margin:"0 0 12px", fontSize:"18px"}}>🎮 Jogos —<br/>Couple vs Couple Battle</h2>
-        <div style={{display:"grid", gridTemplateColumns:"repeat(5,1fr)", gap:"10px"}}>
+      {/* PAREJAS */}
+      <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px", padding:"0 12px"}}>
+        {["Alex & Mia - 1.2km - 92%","Jae & Luna - 3.5km - 87%"].map((t,i)=><div key={i} style={{background:"#1e1340", borderRadius:"14px", padding:"10px", border:"1px solid #8a2bff66", textAlign:"center"}}><div style={{height:"70px", background:"#333", borderRadius:"10px", display:"flex", alignItems:"center", justifyContent:"center"}}>👩‍❤️‍👨</div><div style={{fontSize:"11px", marginTop:"6px", fontWeight:"bold"}}>{t}</div><button onClick={()=>setTab("chat")} style={{marginTop:"6px", width:"100%", background:"#ff2ad4", border:"none", borderRadius:"20px", color:"white", padding:"6px", fontSize:"11px"}}>💬 Conversar - WhatsApp Style</button></div>)}
+      </div>
+
+      {/* JOGOS - OFFLINE E ONLINE */}
+      <div style={{padding:"14px 12px 0"}}>
+        <div style={{fontWeight:"900", color:"#c48cff"}}>🎮 JOGOS 2x2 • Online y Offline • Meia Tela</div>
+        <div style={{display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:"6px", marginTop:"8px"}}>
           {[
-            {n:"Tetris", e:"🧱"},
-            {n:"Sinuca", e:"🎱"},
-            {n:"Bolinha", e:"🔴"},
-            {n:"Cobrinha", e:"🐍"},
-            {n:"Quebra-Cabeça", e:"🧩"},
-          ].map(j=>(
-            <div key={j.n} style={{textAlign:"center"}}>
-              <div style={{background:"#1e1340", borderRadius:"14px", aspectRatio:"1", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"28px", border:"1px solid #6a3dc7"}}>{j.e}</div>
-              <div style={{fontSize:"10px", marginTop:"6px"}}>{j.n}</div>
-            </div>
-          ))}
+            {n:"Tetris",e:"🧱"},{n:"Baralho",e:"🃏"},{n:"Dominó",e:"🎲"},{n:"Caça-palavra",e:"🔤"},
+            {n:"Cobrinha",e:"🐍"},{n:"Bolinha",e:"🔴"},{n:"Sinuca",e:"🎱"},{n:"Achar Par",e:"🧩"},
+          ].map(j=><div key={j.n} style={{background:"#1a1033", borderRadius:"12px", padding:"8px", textAlign:"center", border:"1px solid #444"}}><div style={{fontSize:"22px"}}>{j.e}</div><div style={{fontSize:"8px", marginTop:"4px"}}>{j.n}</div><div style={{fontSize:"7px", color:"#0f0"}}>● online/offline</div></div>)}
         </div>
-        <button style={{marginTop:"16px", width:"100%", background:"linear-gradient(90deg,#ff2a9a,#8a2bff)", border:"none", borderRadius:"14px", padding:"16px", color:"white", fontWeight:"bold", fontSize:"16px"}}>VS Iniciar Batalha 2x2</button>
+        <button onClick={()=>setHalf(!half)} style={{marginTop:"10px", width:"100%", background:half?"#0f0":"#2a1040", color:half?"black":"white", border:"1px solid #ff2ad4", borderRadius:"10px", padding:"10px", fontWeight:"bold", fontSize:"12px"}}>{half?"✓ MODO MEIA TELA ATIVO":"⧉ ATIVAR MEIA TELA - Ver vídeo e digitar"}</button>
+        {half && <div style={{marginTop:"8px", background:"black", borderRadius:"10px", padding:"8px", border:"1px solid #ff2ad4"}}><div style={{background:"#222", height:"90px", borderRadius:"8px", display:"flex", alignItems:"center", justifyContent:"center"}}>🎬 Vídeo em meia tela ▶️</div><div style={{background:"#1a1033", marginTop:"6px", borderRadius:"8px", padding:"6px", fontSize:"11px"}}>💬 Digitando enquanto assiste...</div></div>}
+      </div>
+
+      {/* MUSICA E GALERIA */}
+      <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px", padding:"10px 12px"}}>
+        <div style={{background:"#1a1033", borderRadius:"12px", padding:"10px", border:"1px solid #444"}}><div style={{fontSize:"11px", fontWeight:"bold"}}>🎵 Música</div><div style={{fontSize:"9px", opacity:0.7}}>Online/Offline</div><div style={{marginTop:"6px", background:"#000", borderRadius:"6px", height:"30px", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"10px"}}>▶️ Playlist Casal</div></div>
+        <div style={{background:"#1a1033", borderRadius:"12px", padding:"10px", border:"1px solid #444"}}><div style={{fontSize:"11px", fontWeight:"bold"}}>🖼️ Galeria de Fotos</div><div style={{fontSize:"9px", opacity:0.7}}>Suas fotos</div><div style={{marginTop:"6px", display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:"4px"}}><div style={{background:"#333", height:"22px", borderRadius:"4px"}}></div><div style={{background:"#555", height:"22px", borderRadius:"4px"}}></div><div style={{background:"#333", height:"22px", borderRadius:"4px"}}></div></div></div>
       </div>
 
       {/* PLANOS */}
-      <div style={{padding:"20px 16px"}}>
-        <h2 style={{margin:"0 0 12px", fontSize:"20px", fontWeight:"bold"}}>Planos de Assinatura</h2>
-        <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"12px"}}>
-          <div style={{border:"1px solid #ff2a9a", borderRadius:"16px", padding:"14px", background:"#1e1340"}}>
-            <div style={{background:"#3a1a2a", color:"#ff8ac6", fontSize:"10px", padding:"4px 8px", borderRadius:"6px", display:"inline-block"}}>PLANO ROSA</div>
-            <div style={{color:"#ff2a9a", fontSize:"26px", fontWeight:"900", margin:"8px 0"}}>R$29,90<span style={{fontSize:"12px"}}>/mês</span></div>
-            <div style={{fontSize:"10px", lineHeight:"1.6"}}>✓ Mensagens ilimitadas<br/>✓ Ver quem curtiu você<br/>✓ Filtros avançados</div>
+      <div style={{margin:"10px 12px", background:"#120b25", borderRadius:"18px", padding:"12px", border:"1px solid #ff2ad4"}}>
+        <div style={{fontWeight:"900", marginBottom:"10px"}}>👑 PLANES PREMIUM</div>
+        <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px"}}>
+          <div style={{background:"#1a1033", borderRadius:"12px", padding:"10px", border:"1px solid #ff2ad4"}}>
+            <div style={{fontSize:"11px", color:"#ff6bff", fontWeight:"900"}}>PLANO NORMAL</div>
+            <div style={{fontWeight:"900", fontSize:"18px"}}>R$29,90<span style={{fontSize:"10px"}}>/mês</span></div>
+            <div style={{fontSize:"8px", background:"#0f0", color:"black", display:"inline-block", padding:"2px 6px", borderRadius:"10px", fontWeight:"bold"}}>1 DIA GRÁTIS</div>
+            <div style={{fontSize:"8px", lineHeight:"1.5", marginTop:"6px"}}>
+              ✓ Voz ilimitada<br/>✓ Texto ilimitado<br/>✓ Chamada voz ilimitada<br/>✓ Tradutor voz/texto<br/>✓ Curtida ilimitada<br/>✓ Sem anúncio<br/>✓ Ver quem curtiu ∞<br/>✓ Emoji + Grupo<br/>✓ Jogos offline/online<br/>✓ Música/vídeo off/on<br/>✓ Meia tela<br/>✓ Galeria fotos
+            </div>
+            <button style={{marginTop:"8px", width:"100%", background:"#ff2ad4", border:"none", borderRadius:"20px", padding:"8px", color:"white", fontWeight:"bold", fontSize:"10px"}}>COMEÇAR GRÁTIS</button>
           </div>
-          <div style={{border:"1px solid #8a2bff", borderRadius:"16px", padding:"14px", background:"#1e1340"}}>
-            <div style={{background:"#2a1a4a", color:"#b78cff", fontSize:"10px", padding:"4px 8px", borderRadius:"6px", display:"inline-block", float:"right"}}>Mais popular</div>
-            <div style={{color:"#8a2bff", fontSize:"26px", fontWeight:"900", margin:"8px 0", clear:"both"}}>R$49,90<span style={{fontSize:"12px"}}>/mês</span></div>
-            <div style={{fontSize:"10px", lineHeight:"1.6"}}>✓ Boost diário<br/>✓ Batalhas exclusivas<br/>✓ Sem anúncios</div>
-          </div>
-        </div>
-      </div>
-
-      {/* MENU */}
-      <div style={{position:"fixed", bottom:0, left:"50%", transform:"translateX(-50%)", width:"100%", maxWidth:"430px", background:"#120c24", display:"flex", justifyContent:"space-around", padding:"10px 0", borderTop:"1px solid #2a1f4a"}}>
-        <div style={{textAlign:"center", color:"#ff2a9a"}}>🏠<div style={{fontSize:"10px"}}>Início</div></div>
-        <div style={{textAlign:"center", opacity:0.5}}>🎮<div style={{fontSize:"10px"}}>Jogos</div></div>
-        <div style={{textAlign:"center", opacity:0.5}}>💬<div style={{fontSize:"10px"}}>Chat</div></div>
-        <div style={{textAlign:"center", opacity:0.5}}>👤<div style={{fontSize:"10px"}}>Perfil</div></div>
-      </div>
-    </div>
-  )
-}
+          <div style={{background:"linear-gradient(180deg,#a932ff,#6a1fc7)", borderRadius:"12px", padding:"10px", border:"1px solid #fff", position:"relative"}}>
+            <div style={{position:"absolute", top:"-6px", right:"6px", background:"gold", color:"black", fontSize:"7px", padding:"2px 5px", borderRadius:"6px", fontWeight:"900"}}>POPULAR</div>
+            <div style={{fontSize:"11px", fontWeight:"900"}}>✨ VIP CONNECT</div>
+            <div style={{fontWeight:"900", fontSize:"18px"}}>R$49,90<span style={{fontSize:"10px"}}>/mês</span></div>
+            <div style={{fontSize:"8px", lineHeight:"1.5", marginTop:"6px"}}>
+              ✓ TUDO do Normal +<br/>✓ 🎁 Vale presente<br/>✓ 🥷 Modo Anônimo<br/>✓ 🛂 Passaporte<br/>✓ ↩️ Voltar sempre<br/>✓ 📹 Vídeo privado ∞<br/>✓ 🌐 Tradutor vídeo/voz<br/>✓ PT ↔ EN automático<br/>✓ 📍 GPS encontros<br/>✓ 🚨 Denúncia/Block<br/>✓
